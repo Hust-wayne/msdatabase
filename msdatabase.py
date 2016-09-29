@@ -37,10 +37,8 @@ class MSDataBase(object):
     
     def __init__(self, **kargs):
         if not kargs:
-            print('load config from file')
             config = configparser.ConfigParser()
             config.read('db.ini')
-            print(config.get('db','charset'))
             self.conn = pymssql.connect(host=config.get('db','host'),
                                     user=config.get('db','user'),
                                     password=config.get('db','password'),
@@ -48,7 +46,6 @@ class MSDataBase(object):
                                     charset=config.get('db','charset'))
             
         else:    
-            print('load config from input')
             self.conn = pymssql.connect(**kargs)
         self.open = True
 
